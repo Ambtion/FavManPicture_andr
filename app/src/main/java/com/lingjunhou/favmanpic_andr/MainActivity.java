@@ -1,10 +1,16 @@
 package com.lingjunhou.favmanpic_andr;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.lingjunhou.favmanpic_andr.netWork.FMNetWorkManager;
 import com.lingjunhou.favmanpic_andr.netWork.request.FMConfigRequest;
@@ -27,15 +33,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_main);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FMNetWorkManager.requestGroupList(1,1,new Callback<FMPhotoListResponse>() {
+                FMNetWorkManager.requestGroupList(1, 1, new Callback<FMPhotoListResponse>() {
                     @Override
                     public void onResponse(Call<FMPhotoListResponse> call, Response<FMPhotoListResponse> response) {
-                        Log.e("test","result xxx ");
+
                     }
 
                     @Override
@@ -45,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
-
-
-
 
 }
